@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 30px;
+    text-align: center;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+form.search_tweet input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  box-sizing: border-box;
+  border: 1px solid blue;
+  float: left;
+  width: 80%;
+  background: white;
+  border-radius: 10px;
+
+}
+form.custom_tweet input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  box-sizing: border-box;
+  border: 1px solid blue;
+  float: left;
+  width: 80%;
+  background: white;
+  border-radius: 10px;
+
+}
+
+form.search_tweet button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+form.custom_tweet button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+.header {
+  padding: 50px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 20px;
+}
+
+</style>
+</head>
+<body>
+<div class="header">
+  <h2>EMOTION DETECTION IN TWEETS</h2>
+</div>
+<br>
+<form role="form" class="search_tweet" action="http://localhost:5000/search" method="POST">
+  <input type="text" placeholder="Search.." name="search">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+<br>
+<br>
+<p>(or)</p>
+<br>
+<form role="form" class="custom_tweet" action="http://localhost:5000/search_text" method="POST">
+  <input type="text" placeholder="Type your Text " name="custom_text">
+  <button type="submit">Detect emotion</button>
+</form>
+</body>
+</html>

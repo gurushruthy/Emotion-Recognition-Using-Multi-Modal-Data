@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emotion of custom tweet or text</title>
+    <style>
+
+.header {
+  padding: 50px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 20px;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width:20%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style>
+
+</head>
+<body>
+<div class="header"><h1>Emotion of the entered Text</h1></div>
+<div class="column">
+<h3>Text</h3> {{custom_twt[0]}}
+</div>
+<div class="column">
+    <h3>Detected Emotion</h3>
+{%if custom_twt[1]=="happy"%}
+    <span style='font-size:70px;'>&#128516;</span>
+{%elif custom_twt[1]=="angry"%}
+    <span style='font-size:70px;'>&#128545;</span>
+{%elif custom_twt[1]=="sad"%}
+    <span style='font-size:70px;'>&#128532;</span>
+{%else%}
+  <span style='font-size:70px;'>&#128552;</span>
+{% endif %}
+</div>
+<div class="column" id="column_chart"></div>
+<div class="column" id="piechart"></div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Emotion', 'value',{role : "style"}, { role: 'annotation' }],
+  ['emotion', {{custom_twt[10]}}, "silver",'{{custom_twt[1]}}'],
+]);
+var view = new google.visualization.DataView(data);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {
+        title: "Intensity of emotions",
+        width: 100,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+
+  // Display the chart inside the <div> element with id=""
+  var chart = new google.visualization.ColumnChart(document.getElementById('column_chart'));
+  chart.draw(view, options);
+}
+</script>
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Emotion', 'Intensity',{role : "style"}, { role: 'annotation' }],
+  ['fear', {{custom_twt[5]}}, "blue",'{{custom_twt[9]}}'],
+  ['angry', {{custom_twt[3]}}, "red",'{{custom_twt[7]}}'],
+  ['happy', {{custom_twt[2]}}, "gold",'{{custom_twt[6]}}'],
+  ['sad', {{custom_twt[4]}}, "color: green",'{{custom_twt[8]}}'],
+]);
+var view = new google.visualization.DataView(data);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {
+        title: "Intensity of emotions",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+
+  // Display the chart inside the <div> element with id=""
+  var chart = new google.visualization.BarChart(document.getElementById('piechart'));
+  chart.draw(view, options);
+}
+</script>
+
+</body>
+</html>

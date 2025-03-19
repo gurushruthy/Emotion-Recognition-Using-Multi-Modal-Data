@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Emotion Of searched hashtag</title>
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #888;
+    line-height: 30px;
+    text-align: center;
+}
+
+.header {
+  padding: 50px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 20px;
+}
+
+</style>
+
+</head>
+<body>
+<div class="table-users">
+    <div class="header">Users</div>
+    <table cellspacing="0">
+        <tr>
+            <th>Tweets</th>
+            <th>Emotion</th>
+            <th>Happy Intensity</th>
+            <th>Angry Intensity</th>
+            <th>Sad Intensity</th>
+            <th>Fear Intensity</th>
+
+        </tr>
+         {%for i in search_twt:%}
+        <tr>
+             {%for j in i:%}
+        <td>
+            {{j}}
+        </td>
+              {%endfor%}
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+</body>
+</html>
+
+
+

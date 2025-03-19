@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Emotion Of searched hashtag</title>
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #888;
+    line-height: 30px;
+    text-align: center;
+}
+
+.header {
+  padding: 50px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 20px;
+}
+
+</style>
+
+</head>
+<body>
+<div class="table-users">
+    <div class="header">Emotion of Tweets</div>
+    <table cellspacing="0">
+        <tr>
+            <th>Tweets</th>
+            <th>Emotion</th>
+            <th> </th>
+            <th>Intensity</th>
+
+
+
+        </tr>
+         {% set count = [1] %}
+         {% set count2 = [20] %}
+         {% set count3 = [40] %}
+         {%for i in search_twt:%}
+         {% if count.append(count.pop() + 1) %}{% endif %} {# increment count by 1 #}
+        {% if count2.append(count2.pop() + 1) %}{% endif %} {# increment count by 1 #}
+         {% if count3.append(count3.pop() + 1) %}{% endif %} {# increment count by 1 #}
+        <tr>
+
+        <td>
+            {{i[0]}}
+
+
+        </td>
+            <td>
+
+            {%if i[1]=="happy"%}
+                <span style='font-size:70px;'>&#128516;</span>
+            {%elif i[1]=="angry"%}
+                <span style='font-size:70px;'>&#128545;</span>
+            {%elif i[1]=="sad"%}
+                 <span style='font-size:70px;'>&#128532;</span>
+            {%else%}
+                 <span style='font-size:70px;'>&#128552;</span>
+            {% endif %}
+
+        </td>
+            <td>
+                <div class="column" id="{{count2}}"></div>
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Emotion', 'value',{role : "style"}, { role: 'annotation' }],
+  ['emotion', {{i[10]}}, "silver",'{{i[1]}}'],
+]);
+var view = new google.visualization.DataView(data);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {
+        width: 100,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+
+  // Display the chart inside the <div> element with id=""
+  var chart = new google.visualization.ColumnChart(document.getElementById('{{count2}}'));
+  chart.draw(view, options);
+}
+</script>
+            </td>
+        <td>
+            <div class="column" id="{{count}}"></div>
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Emotion', 'Intensity',{role : "style"}, { role: 'annotation' }],
+  ['fear', {{i[5]}}, "blue",'{{i[9]}}'],
+  ['angry', {{i[3]}}, "red",'{{i[7]}}'],
+  ['happy', {{i[2]}}, "gold",'{{i[6]}}'],
+  ['sad', {{i[4]}}, "color: green",'{{i[8]}}'],
+]);
+var view = new google.visualization.DataView(data);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {
+
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+
+  // Display the chart inside the <div> element with id=""
+  var chart = new google.visualization.BarChart(document.getElementById('{{count}}'));
+  chart.draw(view, options);
+}
+     </script>
+        </td>
+        <td>
+
+                      {%if i[11] is not none%}   <div class="column" id="{{count3}}"></div>{% endif %}
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Emotion', 'Predicted_vale',{role : "style"}],
+  ['amusement', {{i[12]}}, "blue"],
+  ['angry', {{i[13]}}, "red"],
+  ['awe', {{i[14]}}, "yellow"],
+  ['contentment', {{i[15]}}, "color: green"],
+  ['disgust', {{i[16]}}, "orange"],
+  ['excitement', {{i[17]}}, "pink"],
+  ['fear', {{i[18]}}, "purple"],
+  ['sad', {{i[19]}}, "color: grey"],
+]);
+var view = new google.visualization.DataView(data);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {
+
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+
+  // Display the chart inside the <div> element with id=""
+  var chart = new google.visualization.BarChart(document.getElementById('{{count3}}'));
+  chart.draw(view, options);
+}
+     </script>
+        </td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+</body>
+</html>
+
+
+
