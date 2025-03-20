@@ -44,10 +44,10 @@ from time import time
 Lemmatizer = WordNetLemmatizer()
 check = Speller(lang='en')
 
-consumer_key = 'keHJwXehkR7bpkPhDUzleub3O'
-consumer_secret = 'qFgTatBCZYnl5k85HeLteP9wS0LE0ty4sIHUb6eS1xff47n9AG'
-access_token = '1364272365719281668-l1l1dtt8WlqizuPwnyBG1FixKik5Co'
-access_token_secret = 'f8RrLfOHoKQLXKDlQV4C1ORYnWYU8BPjBWRu3kqcu1P3x'
+consumer_key = 'k**O'
+consumer_secret = 'q**G'
+access_token = '1**o'
+access_token_secret = 'f**x'
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
